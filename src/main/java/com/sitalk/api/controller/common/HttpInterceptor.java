@@ -142,7 +142,7 @@ public class HttpInterceptor implements HandlerInterceptor {
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler,
                                  @Nullable Exception ex) throws Exception {
-        //log.info("======================== afterCompletion START =======================");
+        log.info("======================== afterCompletion START =======================");
     }
 
 }
