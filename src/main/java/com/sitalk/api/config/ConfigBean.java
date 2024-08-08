@@ -13,7 +13,7 @@ public class ConfigBean {
     //private String servicePort;
     private String jwtSecret;
 
-    private String ciPipelineId = "local";
-    private String ciCommitShortSha = "local";
-    private String ciCommitBranch = "local";
+    private String ciPipelineId = "profile";
+    private String ciCommitShortSha = "profile";
+    private String ciCommitBranch = "profile";
 }
