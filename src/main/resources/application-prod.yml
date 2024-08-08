@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-    url: sitalk-db.c16gk0kqq71p.ap-northeast-2.rds.amazonaws.com
+    url: jdbc:postgresql://sitalk-db.c16gk0kqq71p.ap-northeast-2.rds.amazonaws.com:5432/sitalk
     username: postgres
     password: skan4342
   jpa:
