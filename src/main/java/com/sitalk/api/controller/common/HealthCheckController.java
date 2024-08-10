@@ -9,7 +9,7 @@ public class HealthCheckController {
 
     @GetMapping("/health")
     public ApiResponse<?> healthCheck() {
-        return ApiResponse.of("Success health check");
+        return ApiResponse.of("Success health check version : 2");
     }
 
 }
