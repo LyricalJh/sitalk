@@ -1,0 +1,35 @@
+name: Deploy To Ec2
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  Deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: SSH EC2 Access
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_PRIVATE_KEY }}
+          script-stop: true
+          script: |
+            cd /home/ubuntu/sitalk
+            git pull origin master
+            ./gradlew clean build
+            
+            sudo fuser -k -n tcp 80 || true
+            
+            JAR_FILE=$(ls build/libs/*SNAPSHOT.jar | head -n 1)
+            
+            if [ -z "$JAR_FILE" ]; then
+              echo "JAR 파일을 찾을 수 없습니다."
+              exit 1
+            fi
+            
+            sudo java -Dspring.profiles.active=prod -jar "$JAR_FILE" > ./output.log 2>&1 &
+            
+            
